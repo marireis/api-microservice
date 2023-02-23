@@ -5,19 +5,23 @@ import com.microservice.userapi.repository.UserRepository;
 import com.microservice.userapi.service.UserService;
 import com.microservice.userapi.service.exception.ObjectNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @RequiredArgsConstructor
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
     private UserRepository repository;
+    private Environment env;
 
     @Override
     public User findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Object not found."));
+        log.info("USER_SERVICE ::: Get request on " + env.getProperty("local.server.port") + " port");
+        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Object not found"));
     }
     @Override
     public List<User> findAll() {

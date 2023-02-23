@@ -15,10 +15,12 @@ import java.util.List;
 public class UserResourceImpl implements UserResource {
 
     private final UserService service;
+
     @Override
     public ResponseEntity<User> findById(Long id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
+
     @Override
     public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok().body(service.findAll());
