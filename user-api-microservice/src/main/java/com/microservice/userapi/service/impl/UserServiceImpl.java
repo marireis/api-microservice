@@ -15,9 +15,10 @@ import java.util.List;
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-    private UserRepository repository;
-    private Environment env;
 
+
+    private final UserRepository repository;
+    private final Environment env;
     @Override
     public User findById(Long id) {
         log.info("USER_SERVICE ::: Get request on " + env.getProperty("local.server.port") + " port");
